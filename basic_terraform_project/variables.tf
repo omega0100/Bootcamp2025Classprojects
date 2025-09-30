@@ -1,16 +1,16 @@
-# Resource Group
+# Base name for Resource Groups
 variable "resource_group_name" {
   type    = string
   default = "letsgo"
 }
 
-# Location
-variable "location" {
-  type    = string
-  default = "northeurope"
+# Multiple locations for deployment
+variable "locations" {
+  type    = list(string)
+  default = ["northeurope", "westeurope"]
 }
 
-# Container Registry name (must be globally unique)
+# Container Registry base name (must be globally unique!)
 variable "acr_name" {
   type    = string
   default = "tacrmyacr"

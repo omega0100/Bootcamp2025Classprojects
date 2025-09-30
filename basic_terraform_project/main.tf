@@ -1,20 +1,22 @@
-
-# Provider
 provider "azurerm" {
   features {}
 }
 
-# Resource Group
+# Resource Group - one per location
 resource "azurerm_resource_group" "letsgo" {
-  name     = var.resource_group_name
-  location = var.location
+  for_each = toset(var.locations)
+
+  name     = "${var.resource_group_name}-${each.key}"
+  location = each.key
 }
 
-# Azure Container Registry
+# Azure Container Registry - one per location
 resource "azurerm_container_registry" "tacrmyacr" {
-  name                = var.acr_name
-  resource_group_name = azurerm_resource_group.letsgo.name
-  location            = azurerm_resource_group.letsgo.location
+  for_each = azurerm_resource_group.letsgo
+
+  name                = "${var.acr_name}${each.key}"
+  resource_group_name = each.value.name
+  location            = each.value.location
   sku                 = var.acr_sku
   admin_enabled       = true
 }
