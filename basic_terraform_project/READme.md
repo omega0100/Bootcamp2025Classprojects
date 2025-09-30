@@ -60,11 +60,11 @@ Outputs for login info and resource IDs → ready for automation (like CI/CD pip
 
 these are the current values of the workflow. Please change them to your own using different Azure Names:
 
- Summary — Resource Names in Azure (No Workspace)
-Region	Resource Type	Azure Name
-northeurope	RG	letsgo
-northeurope	ACR	tacrmyacr
-northeurope	VNet	vnet
-northeurope	Subnets	web-subnet, db-subnet
+Summary — Resource Names in Azure (No Workspace)
+resource : name
+	RG	letsgo
+   ACR	tacrmyacr
+  VNetwork	vnet
+Subnets	web-subnet, db-subnet
 
 Don't change names in modules as names in there work locally within modules.
